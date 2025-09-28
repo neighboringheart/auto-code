@@ -69,7 +69,7 @@ function variables(fc1, fc2, fc3, fontMain, fontMainType, fontHead, fontHeadType
     --eventText: #${event};
     --mainFont: '${fontMain}', ${fontMainType};
     --headFont: '${fontHead}', ${fontHeadType};
-    --bgColor: #${bgColor}80;
+    --bgColor: #${bgColor}b3;
     --pc1: #${pc1};
     --pc2: #${pc2};
     --pc3: #${pc3};
@@ -1474,4 +1474,5 @@ function copyButton() {
 
     alert(`Copied your code for you! :D`)
 }
+
 
