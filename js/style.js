@@ -343,8 +343,8 @@ function alertBars(border, br, shc) {
 
 // html boxes
 function htmlBox(border, br, boxType, popUp, plainBox, shc) {
-    if (boxType == '3' || !plainBox) {
-        // get rid of attempts to add a plain box if they selected the khoshekh boxes or if not selected
+    if (!plainBox) {
+        // get rid of attempts to add a plain box if not selected
         plainBox = ''
     } else {
         plainBox = `.plainBox {
@@ -412,15 +412,15 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         overflow: auto;
         transition: 2s;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
         }
-        .bigBox:hover, .scrollBox:hover {
+        .bigBox:hover, .smallBox:hover {
         height: 300px;
         }
-        .bigBox h1, .bigBox h2, .bigBox h3, .scrollBox h1, .scrollBox h2, .scrollBox h3 {
+        .bigBox h1, .bigBox h2, .bigBox h3, .smallBox h1, .smallBox h2, .smallBox h3 {
         margin: 0;
         color: var(--fc1);
         }
         /* scrollbars */
-        .bigBox::-webkit-scrollbar, .scrollBox::-webkit-scrollbar {
+        .bigBox::-webkit-scrollbar, .smallBox::-webkit-scrollbar {
         width: 0;
         height: 0;
         }
@@ -430,7 +430,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         justify-content: center;
         }
         /* small box */
-        .scrollBox {
+        .smallBox {
         background: var(--pc3);
         color: var(--fc1);
         border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
@@ -460,7 +460,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         border-radius: ${(br) ? '10px' : '3px'};
         text-align: left;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
         }
-        .scrollBox {
+        .smallBox {
         background: var(--pc3);
         color: var(--fc1);
         border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
@@ -478,11 +478,11 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         width: 90%;
         height: 350px;
         }
-        .bigBox::-webkit-scrollbar, .scrollBox::-webkit-scrollbar {
+        .bigBox::-webkit-scrollbar, .smallBox::-webkit-scrollbar {
         width: 0;
         height: 0;
         }
-        .bigBox h1, .bigBox h2, .bigBox h3, .scrollBox h1, .scrollBox h2, .scrollBox h3 {
+        .bigBox h1, .bigBox h2, .bigBox h3, .smallBox h1, .smallBox h2, .smallBox h3 {
         margin: 0;
         color: var(--fc1);
         }`
@@ -502,7 +502,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         margin-bottom: 20px;
         text-align: left;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
         }
-        .scrollBox {
+        .smallBox {
         background: var(--pc3);
         color: var(--fc1);
         overflow: scroll;
@@ -524,11 +524,11 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         .bigBox {
         width: 56%;
         }
-        .scrollBox {
+        .smallBox {
         width: 36%;
         }
         }
-        .plainBox {
+        .bottomBox {
         background: var(--pc3);
         color: var(--fc1);
         border-radius: ${(br) ? '10px' : '3px'};
@@ -538,11 +538,11 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         height: 150px;
         overflow: scroll;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
         }
-        .bigBox::-webkit-scrollbar, .scrollBox::-webkit-scrollbar, .plainBox::-webkit-scrollbar {
+        .bigBox::-webkit-scrollbar, .smallBox::-webkit-scrollbar, .bottomBox::-webkit-scrollbar {
         width: 0;
         height: 0;
         }
-        .bigBox h1, .bigBox h2, .bigBox h3, .scrollBox h1, .scrollBox h2, .scrollBox h3, .plainBox h1, .plainBox h2, .plainBox h3 {
+        .bigBox h1, .bigBox h2, .bigBox h3, .smallBox h1, .smallBox h2, .smallBox h3, .bottomBox h1, .bottomBox h2, .bottomBox h3 {
         margin: 0;
         color: var(--fc1);
         }`
@@ -765,7 +765,7 @@ function caves(border, br, cave, pride, mound, shc) {
     height: 100px;
     width: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: top;
     }
     /* create mound image and empty cave slots */
     img[src$='//static.lioden.com/images/layout/addbeetlemound.png'], img[src$='//static.lioden.com/images/layout/caveunused.jpg'] {
@@ -870,7 +870,7 @@ function dynasties(border, br, dynasty, shc) {
     div.left img {
     content: url('${dynasty}');
     object-fit: cover;
-    object-position: center;
+    object-position: top;
     padding: 0;
     height: 60px;
     max-width: 500px !important;
@@ -981,8 +981,20 @@ function eventFlavor() {
 }
 
 // footer
-function footer(tCheck) {
-    const footerText = `/* technically applies to all "white" text on the site but mainly applies to the footer text */
+function footer(border, br, shc, tCheck) {
+    const footerText = `.footer {
+    background: var(--bgColor);
+    border-radius: ${(br) ? '10px' : '0'};
+    border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
+    ${(shc != '') ? `box-shadow: 0 0 10px #${shc};` : 'box-shadow: none;'}
+    padding-top: 1em;
+}
+
+img[src*='hand_text.svg'] {
+    opacity: 1 !important;
+    filter: ${(tCheck) ? 'brightness(1000%)' : 'brightness(0%)'};
+}
+/* technically applies to all "white" text on the site but mainly applies to the footer text */
     .white {
     color: var(--fc1);${(tCheck) ? '&#10;text-shadow: 0 0 5px #000;' : ''}
     }
@@ -1160,7 +1172,7 @@ function media(bgColor, mImg, boxType) {
     }
     .breadcrumb::after {
     right: 22% !important;
-    }${(boxType == '1') ? `&#10;.bigBox {&#10;height: 150px !important;&#10;}&#10;.scrollBox {&#10;height: 150px !important;&#10;}&#10;.bigBox:hover, .scrollBox:hover {&#10;height: 150px !important;&#10;}` : ''}
+    }${(boxType == '1') ? `&#10;.bigBox {&#10;height: 150px !important;&#10;}&#10;.smallBox {&#10;height: 150px !important;&#10;}&#10;.bigBox:hover, .smallBox:hover {&#10;height: 150px !important;&#10;}` : ''}
     }
     @media (max-width: 684px) {
     div.lionImage.featured-lion > div {
@@ -1368,7 +1380,7 @@ function displayCode(font, fc1, fc2, fc3, tCheck, fontMain, fontMainType, fontHe
     const branchText = branch(border) // no box-shadow
     const buttonText = buttons(br, bTextShade, rbTextShade) // no box-shadow
     const eventText = eventFlavor() // no box-shadow
-    const footerText = footer(tCheck) // no box-shadow
+    const footerText = footer(border, br, shc, tCheck)
     const chatText = chat(tCheck, border) // no box-shadow (gets cut off)
     const mediaText = media(bgColor, mImg, boxType) // no box-shadow
 
@@ -1462,3 +1474,4 @@ function copyButton() {
 
     alert(`Copied your code for you! :D`)
 }
+
