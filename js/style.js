@@ -79,7 +79,7 @@ function variables(fc1, fc2, fc3, fontMain, fontMainType, fontHead, fontHeadType
     --sc3: #${sc3};
     --sc4: #${sc4};
     --tc: #${tc};
-    --borderColor: #${bc};
+    --borderColor: ${(bc == '') ? "transparent" : `#${bc}`};
     --redAlert: #${redBG};
     --redLink: #${redLink};
     --greenAlert: #${greenBG};
@@ -397,7 +397,14 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         popUp = ''
     }
     if (boxType == 'none') {
-        boxType = ''
+        boxType = `.bigBox,
+		.smallBox,
+		.bottomBox {
+   		background-color: var(--pc3) !important;
+    	border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
+    	color: var(--fc1) !important;
+    	border-radius: ${(br) ? '10px' : '3px'};
+}`
     } else if (boxType == '1') {
         // hover box
         boxType = `.bigBox {
@@ -562,23 +569,6 @@ function comments(border, shc) {
     }
     .comment:nth-child(even) {
     background: var(--pc3) !important;
-    }
-    /* scrollbar */
-    #commentBox::-webkit-scrollbar{
-    height: 0;
-    width: 8px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #fff;
-    }
-    /* scrollbar button */
-    #commentBox::-webkit-scrollbar-thumb {
-    background: var(--pc2);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    }
-    #commentBox::-webkit-scrollbar-thumb:hover {
-    background: var(--pc1);
     }`
 
     return commentText
@@ -1059,19 +1049,6 @@ function chat(tCheck, border) {
     #chatMessageList[data-pings="enabled"] .s-chat-message_mention a:hover, #chatMessageList[data-pings="enabled"] .s-chat-message_mention a:focus {
     color: var(--fc1) !important;
     }
-    /* scrollbar */
-    #chatMessageList::-webkit-scrollbar {
-    width: 8px;
-    background: #fff;
-    }
-    /* scrollbar button */
-    #chatMessageList::-webkit-scrollbar-thumb {
-    background: var(--pc2);
-    border-radius: 0;
-    }
-    #chatMessageList::-webkit-scrollbar-thumb:hover {
-    background: var(--pc1);
-    }
     /* claim badge */
     .s-chat-message_claim {
     background: var(--pc2);
@@ -1474,5 +1451,6 @@ function copyButton() {
 
     alert(`Copied your code for you! :D`)
 }
+
 
 
