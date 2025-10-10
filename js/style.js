@@ -379,7 +379,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         border-top-left-radius: ${(br) ? '10px' : '3px'};
         transition: 2s;
         z-index: 100;
-        overflow: scroll;${(shc != '') ? `&#10;box-shadow: 0 0 10px #${shc};` : ''}
+        overflow: auto;${(shc != '') ? `&#10;box-shadow: 0 0 10px #${shc};` : ''}
         }
         .profileTab:hover, .profileTab:focus {
         height: 300px;
@@ -457,7 +457,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         background: var(--pc3);
         color: var(--fc1);
         border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
-        overflow: scroll;
+        overflow: auto;
         height: 320px;
         width: 46%;
         padding: 20px;
@@ -471,7 +471,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         background: var(--pc3);
         color: var(--fc1);
         border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
-        overflow: scroll;
+        overflow: auto;
         height: 150px;
         width: 46%;
         padding: 20px;
@@ -500,7 +500,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         border-radius: ${(br) ? '10px' : '3px'};
         border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
         color: var(--fc1);
-        overflow: scroll;
+        overflow: auto;
         height: 200px;
         width: 57%;
         padding: 20px;
@@ -512,7 +512,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         .smallBox {
         background: var(--pc3);
         color: var(--fc1);
-        overflow: scroll;
+        overflow: auto;
         border-radius: ${(br) ? '10px' : '3px'};
         border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
         height: 200px;
@@ -543,7 +543,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         margin: 0 10px 0 10px;
         padding: 20px;
         height: 150px;
-        overflow: scroll;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+        overflow: auto;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
         }
         .bigBox::-webkit-scrollbar, .smallBox::-webkit-scrollbar, .bottomBox::-webkit-scrollbar {
         width: 0;
@@ -1451,6 +1451,7 @@ function copyButton() {
 
     alert(`Copied your code for you! :D`)
 }
+
 
 
 
