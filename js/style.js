@@ -379,10 +379,12 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         border-top-left-radius: ${(br) ? '10px' : '3px'};
         transition: 2s;
         z-index: 100;
-        overflow: auto;${(shc != '') ? `&#10;box-shadow: 0 0 10px #${shc};` : ''}
+        overflow: hidden;${(shc != '') ? `&#10;box-shadow: 0 0 10px #${shc};` : ''}
         }
         .profileTab:hover, .profileTab:focus {
         height: 300px;
+		overflow-x: hidden;
+		overflow-y: auto;
         }
         .profileTab h1, .profileTab h2, .profileTab h3 {
         margin: 0;
@@ -412,11 +414,13 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         margin: 20px;
         margin-bottom: 0;
         height: 80px;
-        overflow: auto;
+        overflow: hidden;
         transition: 2s;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
         }
         .bigBox:hover, .smallBox:hover {
         height: 300px;
+		overflow-x: hidden;
+		overflow-y: auto;
         }
         .bigBox h1, .bigBox h2, .bigBox h3, .smallBox h1, .smallBox h2, .smallBox h3 {
         margin: 0;
@@ -438,7 +442,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         width: 450px;
         margin: 20px;
         margin-bottom: 0;
-        overflow: auto;
+        overflow: hidden;
         float: left;
         transition: 2s;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
         }`
@@ -1434,6 +1438,7 @@ function copyButton() {
 
     alert(`Copied your code for you! :D`)
 }
+
 
 
 
