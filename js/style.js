@@ -399,9 +399,9 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
 		.smallBox,
 		.bottomBox {
    		background-color: var(--pc3) !important;
-    	border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
+    	border: ${(border == 'none') ? border : `1px solid var(--borderColor) !important`};
     	color: var(--fc1) !important;
-    	border-radius: ${(br) ? '10px' : '3px'};
+    	border-radius: ${(br) ? '10px' : '3px'} !important;
 }`
     } else if (boxType == '1') {
         // hover box
@@ -1438,6 +1438,7 @@ function copyButton() {
 
     alert(`Copied your code for you! :D`)
 }
+
 
 
 
