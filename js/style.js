@@ -387,10 +387,6 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         .profileTab h1, .profileTab h2, .profileTab h3 {
         margin: 0;
         color: var(--fc1);
-        }
-        .profileTab::-webkit-scrollbar {
-        width: 0;
-        height: 0;
         }`
     } else {
         // set to nothing for ease of use
@@ -425,11 +421,6 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         .bigBox h1, .bigBox h2, .bigBox h3, .smallBox h1, .smallBox h2, .smallBox h3 {
         margin: 0;
         color: var(--fc1);
-        }
-        /* scrollbars */
-        .bigBox::-webkit-scrollbar, .smallBox::-webkit-scrollbar {
-        width: 0;
-        height: 0;
         }
         /* section holding small boxes */
         .scrollSection {
@@ -484,10 +475,6 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         margin: 0 auto;
         width: 90%;
         height: 350px;
-        }
-        .bigBox::-webkit-scrollbar, .smallBox::-webkit-scrollbar {
-        width: 0;
-        height: 0;
         }
         .bigBox h1, .bigBox h2, .bigBox h3, .smallBox h1, .smallBox h2, .smallBox h3 {
         margin: 0;
@@ -544,10 +531,6 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         padding: 20px;
         height: 150px;
         overflow: auto;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
-        }
-        .bigBox::-webkit-scrollbar, .smallBox::-webkit-scrollbar, .bottomBox::-webkit-scrollbar {
-        width: 0;
-        height: 0;
         }
         .bigBox h1, .bigBox h2, .bigBox h3, .smallBox h1, .smallBox h2, .smallBox h3, .bottomBox h1, .bottomBox h2, .bottomBox h3 {
         margin: 0;
@@ -1451,6 +1434,7 @@ function copyButton() {
 
     alert(`Copied your code for you! :D`)
 }
+
 
 
 
