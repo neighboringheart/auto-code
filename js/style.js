@@ -684,8 +684,8 @@ function clanDesc(border, shc) {
     padding: 20px;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
     }
     .page-description > div {
-    padding: 0;
-    margin: 0;
+    padding: 0 !important;
+    margin: 0 !important;
     }`
 
     return clanText
@@ -733,6 +733,94 @@ function caves(border, br, cave, pride, mound, shc) {
     content: url('LINK');
     padding: 5px;
     } */
+	/* pride tab text overlay code by Chris (#105465) (credit must remain intact for any use of this code and I do not permit it to be used for comms or free css without explicit permission from me.) */
+	/* mobile section */
+@media (max-width: 768px) {
+    a[href*='unsorted.php']>.cave-grid::before,
+    #fraOrganizationBlock>div:nth-child(2) .cave-grid::before,
+    a[href*='lionoverview.php']>.cave-grid::before {
+        position: absolute;
+        top: 0.6rem;
+        font-size: 2rem;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: bold;
+        z-index: 1;
+        display: block;
+        max-width: 260px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 1rem;
+        text-shadow: 1px 1px #0000001a, 1px -1px #0000001a, -1px 1px #0000001a, -1px -1px #0000001a, 0 1px #0000001a, 0 -1px #0000001a, -1px 0 #0000001a, 1px 0 #0000001a, 0 0 3px #000000;
+    }
+    a[href*='unsorted.php']>.cave-grid::before {
+        content: 'Unsorted';
+        text-align: left;
+    }
+    a[href*='lionoverview.php']>.cave-grid::before {
+        content: 'Pride Overview';
+        text-align: right;
+    }
+    #fraOrganizationBlock>div:nth-child(2) .cave-grid::before {
+        content: 'Nesting';
+        text-align: left;
+    }
+}
+@media (max-width: 629px) {
+    a[href*='lionoverview.php']>.cave-grid::before {
+        padding-right: 1.7rem;
+    }
+}
+/* tablet and desktop section */
+@media (min-width: 769px) {
+    a[href*='unsorted.php']>.cave-grid::before,
+    #fraOrganizationBlock>div:nth-child(2) .cave-grid::before,
+    a[href*='lionoverview.php']>.cave-grid::before {
+        position: absolute;
+        top: 0.6rem;
+        font-size: 2rem;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: bold;
+        z-index: 1;
+        text-shadow: 1px 1px #0000001a, 1px -1px #0000001a, -1px 1px #0000001a, -1px -1px #0000001a, 0 1px #0000001a, 0 -1px #0000001a, -1px 0 #0000001a, 1px 0 #0000001a, 0 0 3px #000000;
+    }
+    a[href*='unsorted.php']>.cave-grid::before {
+        content: 'Unsorted';
+        left: 6rem;
+    }
+    a[href*='lionoverview.php']>.cave-grid::before {
+        content: 'Pride Overview';
+        right: 6rem;
+    }
+    #fraOrganizationBlock>div:nth-child(2) .cave-grid::before {
+        content: 'Nesting';
+        left: 6rem;
+    }
+}
+@media (min-width: 993px) {
+    a[href*='unsorted.php']>.cave-grid::before,
+    #fraOrganizationBlock>div:nth-child(2) .cave-grid::before,
+    a[href*='lionoverview.php']>.cave-grid::before {
+        font-size: 1.6rem;
+    }
+    a[href*='unsorted.php']>.cave-grid::before {
+        left: 2.6rem;
+    }
+    a[href*='lionoverview.php']>.cave-grid::before {
+        right: 2.6rem;
+    }
+    #fraOrganizationBlock>div:nth-child(2) .cave-grid::before {
+        left: 2.6rem;
+    }
+}
+@media (min-width: 1201px) {
+    a[href*='unsorted.php']>.cave-grid::before,
+    #fraOrganizationBlock>div:nth-child(2) .cave-grid::before,
+    a[href*='lionoverview.php']>.cave-grid::before {
+        font-size: 2rem;
+    }
+}
     /* all mounds but like a cave */
     .mound-grid {
     padding: 0 0 5px 0;
@@ -1438,6 +1526,7 @@ function copyButton() {
 
     alert(`Copied your code for you! :D`)
 }
+
 
 
 
