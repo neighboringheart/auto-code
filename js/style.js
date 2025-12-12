@@ -60,8 +60,19 @@ function translate(hex, val) {
     return f(0) + f(8) + f(4)
 }
 
+// credits section
+function credits(freeCheck) {
+    let creditText = ''
+    if (freeCheck) {
+        creditText = 'Layout Made by Chris (#105465) for free use&#10;All of my free use layouts are subject to the rules detailed on my free CSS and HTML thread, so please keep that in mind and abide by my rules. I have chosen to make this work freely available and I can change that at any time&#10;https://www.lioden.com/topic.php?id=304429491963'
+    } else {
+        creditText = 'Layout Made by Chris (#105465)&#10;Please do not edit or copy any of this code without permission. If you have any questions regarding my work, please message me.'
+    }
+    return creditText
+}
+
 // variables section
-function variables(fc1, fc2, fc3, fontMain, fontMainType, fontHead, fontHeadType, bgColor, pc1, pc2, pc3, pc4, sc1, sc2, sc3, sc4, tc, bc, redBG, redLink, greenBG, greenLink, yellowBG, yellowLink, event, b1, b2, b3, b4, b5, b6, bText, rb1, rb2, rb3, rb4, rb5, rb6, rbText) {
+function variables(fc1, fc2, fc3, fontMain, fontMainType, fontHead, fontHeadType, bgColor, pc1, pc2, pc3, pc4, sc1, sc2, sc3, sc4, tc, bc, shc, redBG, redLink, greenBG, greenLink, yellowBG, yellowLink, event, b1, b2, b3, b4, b5, b6, bText, rb1, rb2, rb3, rb4, rb5, rb6, rbText) {
     const varText = `:root {
     --fc1: #${fc1};
     --fc2: #${fc2};
@@ -79,7 +90,7 @@ function variables(fc1, fc2, fc3, fontMain, fontMainType, fontHead, fontHeadType
     --sc3: #${sc3};
     --sc4: #${sc4};
     --tc: #${tc};
-    --borderColor: ${(bc == '') ? "transparent" : `#${bc}`};
+    --borderColor: ${(bc == '') ? "transparent" : `#${bc}`};${(shc != '') ? `&#10;--mainShadow: 0 0 10px #${shc};` : ''}${(shc != '') ? `&#10;--bodyShadow: 1px 1px 3px #${shc};` : ''}
     --redAlert: #${redBG};
     --redLink: #${redLink};
     --greenAlert: #${greenBG};
@@ -154,7 +165,7 @@ function topbar(border, br, shc) {
     background: var(--pc1);
     border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
     border-top: none;${(br) ? '&#10;border-bottom-left-radius: 10px;&#10;border-bottom-right-radius: 10px;' : ''}
-    color: var(--fc1);${(shc != '') ? `&#10;box-shadow: 0 0 10px #${shc};` : ''}
+    color: var(--fc1);${(shc != '') ? `&#10;box-shadow: var(--mainShadow);` : ''}
     }`
 
     return topbarText
@@ -212,7 +223,7 @@ function main(border, br, shc) {
     background: var(--bgColor);
     border-radius: ${(br) ? '10px' : '0'};
     border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
-    ${(shc != '') ? `box-shadow: 0 0 10px #${shc};` : 'box-shadow: none;'}}
+    ${(shc != '') ? `box-shadow: var(--mainShadow);` : 'box-shadow: none;'}}
     /* territory box */
     .col-md-9 {
     background: none;
@@ -225,7 +236,7 @@ function main(border, br, shc) {
 function breadcrumb(border, br, shc) {
     const breadcrumbText = `.breadcrumb {
     background: var(--pc3);
-    border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};${(br) ? '&#10;border-radius: 10px;' : ''}${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}}
+    border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};${(br) ? '&#10;border-radius: 10px;' : ''}${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}}
     .breadcrumb::after {
     content: "CSS by Chris (#105465)";
     position: absolute;
@@ -250,7 +261,7 @@ function sidebar(border, br, shc) {
     .col-md-3 .panel {
     border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};${(br) ? '&#10;border-radius: 10px;' : ''}
     background: var(--pc3);
-    ${(shc != '') ? `box-shadow: 1px 1px 3px #${shc};` : 'box-shadow: none;'}
+    ${(shc != '') ? `box-shadow: var(--bodyShadow);` : 'box-shadow: none;'}
     color: var(--fc1);
     }
     /* dotted line above chat on smaller screen sizes */
@@ -302,7 +313,7 @@ function alertBars(border, br, shc) {
     .alert-danger, .alert-success, .alert-warning, .alert {
     color: var(--fc1);
     background: var(--greenAlert);
-    border: ${(border == 'none') ? border + ' !important' : `1px solid var(--borderColor) !important`};${(br) ? '&#10;border-radius: 10px;' : ''}${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+    border: ${(border == 'none') ? border + ' !important' : `1px solid var(--borderColor) !important`};${(br) ? '&#10;border-radius: 10px;' : ''}${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
     }
     /* red notifications */
     .alert-danger {
@@ -342,7 +353,7 @@ function alertBars(border, br, shc) {
 }
 
 // html boxes
-function htmlBox(border, br, boxType, popUp, plainBox, shc) {
+function htmlBox(border, br, boxType, popUp, plainBox, pageDoll, shc) {
     if (!plainBox) {
         // get rid of attempts to add a plain box if not selected
         plainBox = ''
@@ -356,7 +367,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         margin: 0 auto;
         padding: 20px;
         height: auto;
-        overflow: auto;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+        overflow: auto;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
         }
         .plainBox h1, .plainBox h2, .plainBox h3 {
         margin: 0;
@@ -379,7 +390,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         border-top-left-radius: ${(br) ? '10px' : '3px'};
         transition: 2s;
         z-index: 100;
-        overflow: hidden;${(shc != '') ? `&#10;box-shadow: 0 0 10px #${shc};` : ''}
+        overflow: hidden;${(shc != '') ? `&#10;box-shadow: var(--mainShadow);` : ''}
         }
         .profileTab:hover, .profileTab:focus {
         height: 300px;
@@ -394,6 +405,17 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         // set to nothing for ease of use
         popUp = ''
     }
+    if(pageDoll) {
+        pageDoll = `.page-doll {
+        width: 300px;
+        position: fixed;
+        bottom: 5px;
+        right: 10px;
+        z-index: 1;
+        }`
+    } else {
+        pageDoll = ''
+    }
     if (boxType == 'none') {
         boxType = `.bigBox,
 		.smallBox,
@@ -401,7 +423,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
    		background-color: var(--pc3) !important;
     	border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
     	color: var(--fc1) !important;
-    	border-radius: ${(br) ? '10px' : '3px'} !important;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+    	border-radius: ${(br) ? '10px' : '3px'} !important;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
 }`
     } else if (boxType == '1') {
         // hover box
@@ -415,7 +437,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         margin-bottom: 0;
         height: 80px;
         overflow: hidden;
-        transition: 2s;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+        transition: 2s;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
         }
         .bigBox:hover, .smallBox:hover {
         height: 300px;
@@ -444,7 +466,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         margin-bottom: 0;
         overflow: hidden;
         float: left;
-        transition: 2s;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+        transition: 2s;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
         }`
     } else if (boxType == '2') {
         // side boxes
@@ -460,7 +482,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         margin: 10px;
         margin-bottom: 20px;
         border-radius: ${(br) ? '10px' : '3px'};
-        text-align: left;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+        text-align: left;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
         }
         .smallBox {
         background: var(--pc3);
@@ -473,7 +495,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         float: right;
         margin: 10px;
         border-radius: ${(br) ? '10px' : '3px'};
-        text-align: left;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+        text-align: left;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
         }
         .scrollSection {
         margin: 0 auto;
@@ -498,7 +520,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         float: left;
         margin: 10px;
         margin-bottom: 20px;
-        text-align: left;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+        text-align: left;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
         }
         .smallBox {
         background: var(--pc3);
@@ -511,7 +533,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         padding: 20px;
         float: right;
         margin: 10px;
-        text-align: left;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+        text-align: left;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
         }
         .scrollSection {
         margin: 0 auto;
@@ -534,14 +556,14 @@ function htmlBox(border, br, boxType, popUp, plainBox, shc) {
         margin: 0 10px 0 10px;
         padding: 20px;
         height: 150px;
-        overflow: auto;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+        overflow: auto;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
         }
         .bigBox h1, .bigBox h2, .bigBox h3, .smallBox h1, .smallBox h2, .smallBox h3, .bottomBox h1, .bottomBox h2, .bottomBox h3 {
         margin: 0;
         color: var(--fc1);
         }`
     }
-    const htmlText = `${boxType}${(popUp == '') ? '' : `&#10;&#10;${popUp}`}${(plainBox == '') ? '' : `&#10;&#10;${plainBox}`}`
+    const htmlText = `${boxType}${(popUp == '') ? '' : `&#10;&#10;${popUp}`}${(plainBox == '') ? '' : `&#10;&#10;${plainBox}`}${(pageDoll == '') ? '' : `&#10;&#10;${pageDoll}`}`
 
     return htmlText
 }
@@ -552,7 +574,7 @@ function comments(border, shc) {
     border: ${(border == 'none') ? border : `1px solid var(--borderColor)`} !important;
     border-radius: 5px !important;
     height: 200px !important;
-    background: var(--pc4);${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+    background: var(--pc4);${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
     }
     .comment:nth-child(even) {
     background: var(--pc3) !important;
@@ -595,7 +617,7 @@ function tables(fc1, border, tbr, kingHov, kingStyle, kingHovStyle, shc) {
     .table {
     background: var(--sc4);
     border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
-    color: var(--fc1);${(tbr) ? `&#10;border-collapse: separate;&#10;border-radius: 10px;` : ''}${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+    color: var(--fc1);${(tbr) ? `&#10;border-collapse: separate;&#10;border-radius: 10px;` : ''}${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
     }
     /* table links */
     .table .top a:link, .table .top a:active, .table .top a:visited, .table th a:link, .table th a:active, .table th a:visited {
@@ -681,7 +703,7 @@ function clanDesc(border, shc) {
     const clanText = `.page-description {
     border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
     background: var(--pc4);
-    padding: 20px;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+    padding: 20px;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
     }
     .page-description > div {
     padding: 0 !important;
@@ -697,7 +719,7 @@ function caves(border, br, cave, pride, mound, shc) {
     .mound-grid, .cave-grid {
     background: var(--tc);
     border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};${(br) ? `&#10;border-radius: 10px;` : ''}
-    color: var(--fc2);${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+    color: var(--fc2);${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
     }
     /* cave and mound link hover */
     .center > a:hover > .cave-grid, .center > a:focus > .cave-grid, .center > a:hover > .mound-grid, .center > a:focus > .mound-grid {
@@ -847,9 +869,9 @@ function featuredLion(border, br, fLion, shc) {
         border = `0 0 0 1px var(--borderColor)`
     }
     if (shc != '' && border != 'none') {
-        border += `, 1px 1px 3px #${shc}`
+        border += `, var(--bodyShadow)`
     } else if (shc != '') {
-        border = `1px 1px 3px #${shc}`
+        border = `var(--bodyShadow)`
     }
     const featuredLionText = `.featured-lion {
     background: var(--sc1);
@@ -886,7 +908,7 @@ function mounds(border, br, shc) {
     const moundText = `/* menu bg */
     .sub_menu {
     background: var(--sc1);
-    border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};${(br) ? '&#10;border-radius: 10px;' : ''}${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+    border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};${(br) ? '&#10;border-radius: 10px;' : ''}${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
     }
     .sub_sub_menu {
     display: none;
@@ -902,7 +924,7 @@ function featureStyle(border, br, shc) {
     background: var(--sc4);
     padding: 20px;
     padding-top: 10px;
-    padding-bottom: 10px;${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+    padding-bottom: 10px;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
     }
     /* dropdown width (acts funny on smaller screens at the default 200px sometimes) */
     div.feature select {
@@ -929,7 +951,7 @@ function dynasties(border, br, dynasty, shc) {
     div.left {
     background: var(--tc);${(br) ? '&#10;border-radius: 10px;' : ''}
     border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
-    color: var(--fc1);${(shc != '') ? `&#10;box-shadow: 1px 1px 3px #${shc};` : ''}
+    color: var(--fc1);${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
     }
     /* custom dynasty images */
     div.left img {
@@ -1051,7 +1073,7 @@ function footer(border, br, shc, tCheck) {
     background: var(--bgColor);
     border-radius: ${(br) ? '10px' : '0'};
     border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
-    ${(shc != '') ? `box-shadow: 0 0 10px #${shc};` : 'box-shadow: none;'}
+    ${(shc != '') ? `box-shadow: var(--mainShadow);` : 'box-shadow: none;'}
     padding-top: 1em;
 }
 
@@ -1200,11 +1222,11 @@ function chat(tCheck, border) {
 }
 
 // media queries
-function media(bgColor, mImg, boxType) {
+function media(bgColor, mImg, boxType, pageDoll) {
     const mediaText = `@media (max-width: 993px) {
     .dynastylist {
     margin-bottom: 15px;
-    }
+    }${(pageDoll) ? `&#10;.page-doll {&#10;width: 200px;&#10;}` : ''}
     }
     @media (max-width: 768px) {
     body {${(mImg != '') ? `&#10;background: #${bgColor} url('${mImg}') fixed;` : ''}
@@ -1224,7 +1246,7 @@ function media(bgColor, mImg, boxType) {
     }
     .breadcrumb::after {
     right: 22% !important;
-    }${(boxType == '1') ? `&#10;.bigBox {&#10;height: 150px !important;&#10;}&#10;.smallBox {&#10;height: 150px !important;&#10;}&#10;.bigBox:hover, .smallBox:hover {&#10;height: 150px !important;&#10;}` : ''}
+    }${(boxType == '1') ? `&#10;.bigBox {&#10;height: 150px !important;&#10;overflow: auto !important&#10;}&#10;.smallBox {&#10;height: 150px !important;&#10;overflow: auto !important&#10;}&#10;.bigBox:hover, .smallBox:hover {&#10;height: 150px !important;&#10;}` : ''}${(pageDoll) ? `&#10;.page-doll {&#10;width: 150px;&#10;}` : ''}
     }
     @media (max-width: 684px) {
     div.lionImage.featured-lion > div {
@@ -1328,6 +1350,7 @@ codeForm.addEventListener('submit', (e) => {
     let htmlBox = gID('html-box').value
     let popUp = gID('popup-check').checked
     let plainBox = gID('box-check').checked
+    let pageDoll = gID('pagedoll-check').checked
 
     // alert data
     let redBG = gID('red-alert-bg').value
@@ -1404,14 +1427,16 @@ codeForm.addEventListener('submit', (e) => {
         redButtonText = fontPrimary
         redButtonTextShade = textCheck
     }
+    let freeCheck = gID('free-check').checked
 
     // add checks for all required fields later
     // also add box shadow check for everything
-    displayCode(font, fontPrimary, fontSecondary, fontTertiary, textCheck, fontMain, fontMainType, fontHead, fontHeadType, bgColor, bgImg, mobileImg, primaryOne, primaryTwo, primaryThree, primaryFour, secondaryOne, secondaryTwo, secondaryThree, secondaryFour, tertiary, border, borderColor, borderRound, tableBorder, kingImgHover, kingImgStyle, kingImgHoverStyle, logoImg, redBG, redLink, greenBG, greenLink, yellowBG, yellowLink, htmlBox, popUp, plainBox, caveImg, prideTabs, moundImg, featuredImg, dynastyImg, event, button1, button2, button3, button4, button5, button6, buttonText, buttonTextShade, redButton1, redButton2, redButton3, redButton4, redButton5, redButton6, redButtonText, redButtonTextShade, shadowColor)
+    displayCode(font, fontPrimary, fontSecondary, fontTertiary, textCheck, fontMain, fontMainType, fontHead, fontHeadType, bgColor, bgImg, mobileImg, primaryOne, primaryTwo, primaryThree, primaryFour, secondaryOne, secondaryTwo, secondaryThree, secondaryFour, tertiary, border, borderColor, borderRound, tableBorder, kingImgHover, kingImgStyle, kingImgHoverStyle, logoImg, redBG, redLink, greenBG, greenLink, yellowBG, yellowLink, htmlBox, popUp, plainBox, pageDoll, caveImg, prideTabs, moundImg, featuredImg, dynastyImg, event, button1, button2, button3, button4, button5, button6, buttonText, buttonTextShade, redButton1, redButton2, redButton3, redButton4, redButton5, redButton6, redButtonText, redButtonTextShade, shadowColor, freeCheck)
 })
 
-function displayCode(font, fc1, fc2, fc3, tCheck, fontMain, fontMainType, fontHead, fontHeadType, bgColor, bgImage, mImg, pc1, pc2, pc3, pc4, sc1, sc2, sc3, sc4, tc, border, bc, br, tbr, kingHov, kingStyle, kingHovStyle, logo, redBG, redLink, greenBG, greenLink, yellowBG, yellowLink, boxType, popUp, plainBox, cave, pride, mound, fLion, dynasty, event, b1, b2, b3, b4, b5, b6, bText, bTextShade, rb1, rb2, rb3, rb4, rb5, rb6, rbText, rbTextShade, shc) {
-    const varText = variables(fc1, fc2, fc3, fontMain, fontMainType, fontHead, fontHeadType, bgColor, pc1, pc2, pc3, pc4, sc1, sc2, sc3, sc4, tc, bc, redBG, redLink, greenBG, greenLink, yellowBG, yellowLink, event, b1, b2, b3, b4, b5, b6, bText, rb1, rb2, rb3, rb4, rb5, rb6, rbText)
+function displayCode(font, fc1, fc2, fc3, tCheck, fontMain, fontMainType, fontHead, fontHeadType, bgColor, bgImage, mImg, pc1, pc2, pc3, pc4, sc1, sc2, sc3, sc4, tc, border, bc, br, tbr, kingHov, kingStyle, kingHovStyle, logo, redBG, redLink, greenBG, greenLink, yellowBG, yellowLink, boxType, popUp, plainBox, pageDoll, cave, pride, mound, fLion, dynasty, event, b1, b2, b3, b4, b5, b6, bText, bTextShade, rb1, rb2, rb3, rb4, rb5, rb6, rbText, rbTextShade, shc, freeCheck) {
+    const creditText = credits(freeCheck)
+    const varText = variables(fc1, fc2, fc3, fontMain, fontMainType, fontHead, fontHeadType, bgColor, pc1, pc2, pc3, pc4, sc1, sc2, sc3, sc4, tc, bc, shc, redBG, redLink, greenBG, greenLink, yellowBG, yellowLink, event, b1, b2, b3, b4, b5, b6, bText, rb1, rb2, rb3, rb4, rb5, rb6, rbText)
     const bodyText = body(bgColor, bgImage) // no box-shadow
     const topbarText = topbar(border, br, shc)
     const navbarText = navbar(border, br, logo) // no box-shadow
@@ -1420,7 +1445,7 @@ function displayCode(font, fc1, fc2, fc3, tCheck, fontMain, fontMainType, fontHe
     const sidebarText = sidebar(border, br, shc)
     const progressText = progressBar(tCheck) // no box-shadow
     const alertText = alertBars(border, br, shc)
-    const htmlText = htmlBox(border, br, boxType, popUp, plainBox, shc)
+    const htmlText = htmlBox(border, br, boxType, popUp, plainBox, pageDoll, shc)
     const commentText = comments(border, shc)
     const tableText = tables(fc1, border, tbr, kingHov, kingStyle, kingHovStyle, shc)
     const clanText = clanDesc(border, shc)
@@ -1434,11 +1459,10 @@ function displayCode(font, fc1, fc2, fc3, tCheck, fontMain, fontMainType, fontHe
     const eventText = eventFlavor() // no box-shadow
     const footerText = footer(border, br, shc, tCheck)
     const chatText = chat(tCheck, border) // no box-shadow (gets cut off)
-    const mediaText = media(bgColor, mImg, boxType) // no box-shadow
+    const mediaText = media(bgColor, mImg, boxType, pageDoll) // no box-shadow
 
     finalCode.innerHTML = `<div class="d-flex justify-content-between align-items-end"><label class="form-label fs-3 fw-medium" for="code-box">Your Code:</label><button onclick="copyButton()" class="btn btn-primary mb-3">Copy Code</button></div><textarea name="copy-field" class="form-control copy-field" id="code-box">/*
-    Layout Made by Chris (#105465)
-    Please do not edit or copy any of this code without permission. If you have any questions regarding my work, please message me.
+    ${creditText}
     */
     
     /* font import */
@@ -1526,12 +1550,3 @@ function copyButton() {
 
     alert(`Copied your code for you! :D`)
 }
-
-
-
-
-
-
-
-
-
