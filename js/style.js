@@ -1012,11 +1012,11 @@ function branch(border) {
 // buttons
 function buttons(br, bTextShade, rbTextShade) {
     const buttonText = `/* all */
-    .select-control, button.button, input[type="button"], input[type="submit"], input[type="reset"], .select-control:hover, button.button:hover, input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover, .select-control.bad, button.button.bad, input[type="button"].bad, input[type="submit"].bad, input[type="reset"].bad, .select-control.bad:hover, button.button.bad:hover, input[type="button"].bad:hover, input[type="submit"].bad:hover, input[type="reset"].bad:hover {
+    a.button, .select-control, button.button, input[type="button"], input[type="submit"], input[type="reset"], .select-control:hover, button.button:hover, input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover, .select-control.bad, button.button.bad, input[type="button"].bad, input[type="submit"].bad, input[type="reset"].bad, .select-control.bad:hover, button.button.bad:hover, input[type="button"].bad:hover, input[type="submit"].bad:hover, input[type="reset"].bad:hover {
         border-radius: ${(br) ? '5px' : '3px'};
         }
         /* regular button */
-        .select-control, button.button, input[type="button"], input[type="submit"], input[type="reset"] {
+        a.button, .select-control, button.button, input[type="button"], input[type="submit"], input[type="reset"] {
         background: var(--button6);
         background: linear-gradient(to bottom, var(--button6) 5%,var(--button4) 5%,var(--button4) 95%,var(--button2) 95%);
         color: var(--buttonText);
@@ -1025,7 +1025,7 @@ function buttons(br, bTextShade, rbTextShade) {
         font-family: var(--mainFont);
         }
         /* regular button hover */
-        .select-control:hover, button.button:hover, input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+        a.button:hover, .select-control:hover, button.button:hover, input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
         background: var(--button5);
         background: linear-gradient(to bottom,  var(--button5) 5%,var(--button3) 5%,var(--button3) 95%,var(--button1) 95%);
         color: var(--buttonText);
