@@ -506,6 +506,53 @@ function htmlBox(border, br, boxType, popUp, plainBox, pageDoll, shc) {
         margin: 0;
         color: var(--fc1);
         }`
+    } else if (boxType =='4') {
+        // static 3
+        boxType = `.bigBox {
+            background: var(--pc3);
+            color: var(--fc1);
+            border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
+            border-radius: ${(br) ? '10px' : '3px'};
+            padding: 30px;
+            margin: 20px;
+            margin-bottom: 0;
+            height: 200px;
+            overflow: hidden;
+            transition: 2s;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
+        }
+
+        .bigBox h1,
+        .bigBox h2,
+        .bigBox h3,
+        .smallBox h1,
+        .smallBox h2,
+        .smallBox h3 {
+            margin: 0;
+            color: inherit;
+        }
+
+        /* section holding small boxes */
+        .scrollSection {
+            display: flex;
+            justify-content: center;
+            padding: 0 !important;
+        }
+
+        /* small box */
+        .smallBox {
+            background: var(--pc3);
+            color: var(--fc1);
+            border: ${(border == 'none') ? border : `1px solid var(--borderColor)`};
+            border-radius: ${(br) ? '10px' : '3px'};
+            padding: 20px;
+            height: 200px;
+            width: 450px;
+            margin: 20px;
+            margin-bottom: 0;
+            overflow: hidden;
+            float: left;
+            transition: 2s;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
+        }`
     } else {
         // khoshekh boxes
         boxType = `.bigBox {
