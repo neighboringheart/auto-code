@@ -517,8 +517,7 @@ function htmlBox(border, br, boxType, popUp, plainBox, pageDoll, shc) {
             margin: 20px;
             margin-bottom: 0;
             height: 200px;
-            overflow: hidden;
-            transition: 2s;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
+            overflow: auto;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
         }
 
         .bigBox h1,
@@ -549,9 +548,8 @@ function htmlBox(border, br, boxType, popUp, plainBox, pageDoll, shc) {
             width: 450px;
             margin: 20px;
             margin-bottom: 0;
-            overflow: hidden;
-            float: left;
-            transition: 2s;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
+            overflow: auto;
+            float: left;${(shc != '') ? `&#10;box-shadow: var(--bodyShadow);` : ''}
         }`
     } else {
         // khoshekh boxes
